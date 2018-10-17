@@ -1,0 +1,22 @@
+# Android / Gradle
+.gradle/
+**/build/
+local.properties
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+
+# PHP / CodeIgniter
+backend/vendor/
+backend/application/cache/*
+!backend/application/cache/index.html
+backend/application/logs/*
+!backend/application/logs/index.html
+backend/.env
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
