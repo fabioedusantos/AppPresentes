@@ -27,4 +27,9 @@ class MY_Controller extends CI_Controller {
         $this->erro .= $erro;
         $this->valid = false;
     }
+    public function validateDate($date, $format = 'Y-m-d') {
+        $d = DateTime::createFromFormat($format, $date);
+        if($d && $d->format($format) == $date) { $date_now = new DateTime(); if ($d > $date_now) return true; }
+        return false;
+    }
 }
