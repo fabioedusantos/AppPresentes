@@ -35,4 +35,12 @@ public class PresentesModel {
         } catch(Exception e){ Log.e("teste",e.getMessage()); }
         return null;
     }
+    public static String update(Presente presente) {
+        try {
+            result=Http.post(URL_BASE,new HttpParam().add("id",String.valueOf(presente.getId())).add("titulo",presente.getTitulo()).add("valor",String.valueOf(presente.getValor())).add("mensagem",presente.getMensagem()).add("convidado",presente.getConvidado()).add("data",presente.getData()).getParam());
+            fabio.prof.testews.domain.ResponseManipulation response=new Gson().fromJson(result,fabio.prof.testews.domain.ResponseManipulation.class);
+            if(response!=null && !response.isResponse()) return response.getError();
+        } catch(Exception e){ Log.e("teste",e.getMessage()); }
+        return null;
+    }
 }
