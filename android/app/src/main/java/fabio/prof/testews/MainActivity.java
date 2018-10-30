@@ -86,6 +86,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int position, long id) {
+                deletar(presentes.get(position));
+                return true;
+            }
+        });
+    }
+
+    private void deletar(final Presente presente) {
+        new AlertDialog.Builder(this)
+                .setMessage("Deseja remover " + presente.getTitulo() + " (" + presente.getConvidado() + ")" + "?")
+                .setCancelable(false)
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                final String ret = PresentesModel.delete(presente.getId());
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        if (ret == null) {
+                                            Toast.makeText(MainActivity.this, "Sucesso!", Toast.LENGTH_SHORT).show();
+                                            loadListView();
+                                        } else {
+                                            Toast.makeText(MainActivity.this, ret, Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                });
+                            }
+                        }).start();
+
+
+                    }
+                })
+                .setNegativeButton("Não", null)
+                .show();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(0, MENU_NOVO, 0, "Novo Presente");

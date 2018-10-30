@@ -43,4 +43,12 @@ public class PresentesModel {
         } catch(Exception e){ Log.e("teste",e.getMessage()); }
         return null;
     }
+    public static String delete(long id) {
+        try {
+            result=Http.delete(URL_BASE,new HttpParam().add("id",String.valueOf(id)).getParam());
+            fabio.prof.testews.domain.ResponseManipulation response=new Gson().fromJson(result,fabio.prof.testews.domain.ResponseManipulation.class);
+            if(response!=null && !response.isResponse()) return response.getError();
+        } catch(Exception e){ Log.e("teste",e.getMessage()); }
+        return null;
+    }
 }
