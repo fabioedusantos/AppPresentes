@@ -11,6 +11,7 @@
         <EditText android:id="@+id/txtTitulo" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Titulo" />
         <EditText android:id="@+id/txtValor" android:layout_width="match_parent" android:layout_height="wrap_content" android:hint="Valor" android:inputType="numberDecimal" />
         <EditText android:id="@+id/txtMensagem" android:layout_width="match_parent" android:layout_height="150dp" android:gravity="top" android:hint="Mensagem" android:inputType="text|textMultiLine" />
+        <Spinner android:id="@+id/spnConvidado" android:layout_width="match_parent" android:layout_height="wrap_content" />
         <Button android:id="@+id/btnSalvar" android:layout_width="match_parent" android:layout_height="wrap_content" android:onClick="salvar" android:text="Salvar" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
