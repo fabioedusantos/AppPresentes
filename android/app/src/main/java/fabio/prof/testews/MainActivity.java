@@ -24,6 +24,7 @@ import fabio.prof.testews.model.PresentesModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final int MENU_ATUALIZAR = 1111;
     private final int MENU_NOVO = 1112;
     private ListView listView;
 
@@ -33,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         listView = findViewById(R.id.listView);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         loadListView();
     }
 
@@ -129,13 +135,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, MENU_NOVO, 0, "Novo Presente");
+        menu.add(0, MENU_ATUALIZAR, 0, "Atualizar Lista");
+        menu.add(0, MENU_NOVO, 1, "Novo Presente");
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case MENU_ATUALIZAR:
+                loadListView();
+                break;
             case MENU_NOVO:
                 startActivity(new Intent(MainActivity.this, CadastroActivity.class));
                 break;
