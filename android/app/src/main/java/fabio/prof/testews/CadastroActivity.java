@@ -97,7 +97,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     private String getData() {
         String dia = dpData.getDayOfMonth() < 10 ? "0" + String.valueOf(dpData.getDayOfMonth()) : String.valueOf(dpData.getDayOfMonth());
-        String mes = dpData.getMonth() < 10 ? "0" + String.valueOfdpData.getMonth() : String.valueOfdpData.getMonth();
+        String mes = (dpData.getMonth() + 1) < 10 ? "0" + String.valueOf(dpData.getMonth() + 1) : String.valueOf(dpData.getMonth() + 1);
         String ano = String.valueOf(dpData.getYear());
 
         return ano + "-" + mes + "-" + dia;
@@ -110,7 +110,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     private int getMes(String date) {
         String arr[] = date.split("-");
-        return Integer.valueOf(arr[1]);
+        return Integer.valueOf(arr[1]) - 1;
     }
 
     private int getDia(String date) {
