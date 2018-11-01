@@ -38,7 +38,7 @@ public class CadastroActivity extends AppCompatActivity {
         p.setId(0);
 
         Bundle b = getIntent().getExtras();
-        if(b != null) {
+        if (b != null) {
             p.setId(b.getLong("id"));
             txtTitulo.setText(b.getString("titulo"));
             txtValor.setText(String.valueOf(b.getDouble("valor")));
@@ -48,8 +48,8 @@ public class CadastroActivity extends AppCompatActivity {
         }
     }
 
-    private void initComponents(){
-        String list[] = new String[] {
+    private void initComponents() {
+        String list[] = new String[]{
                 "noivo",
                 "noiva"
         };
@@ -59,7 +59,7 @@ public class CadastroActivity extends AppCompatActivity {
         spnConvidado.setAdapter(dataAdapter);
     }
 
-    public void salvar(View v){
+    public void salvar(View v) {
         enable(false);
         p.setTitulo(txtTitulo.getText().toString());
         p.setValor(Double.valueOf(txtValor.getText().toString()));
@@ -74,10 +74,10 @@ public class CadastroActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(ret == null) {
+                        if (ret == null) {
                             Toast.makeText(CadastroActivity.this, "Sucesso!", Toast.LENGTH_SHORT).show();
                             finish();
-                        } else{
+                        } else {
                             Toast.makeText(CadastroActivity.this, ret, Toast.LENGTH_LONG).show();
                         }
                         enable(true);
@@ -96,21 +96,23 @@ public class CadastroActivity extends AppCompatActivity {
     }
 
     private String getData() {
-        int dia = dpData.getDayOfMonth();
-        int mes = dpData.getMonth() + 1;
-        int ano = dpData.getYear();
+        String dia = dpData.getDayOfMonth() < 10 ? "0" + String.valueOf(dpData.getDayOfMonth()) : String.valueOf(dpData.getDayOfMonth());
+        String mes = (dpData.getMonth() + 1) < 10 ? "0" + String.valueOf(dpData.getMonth() + 1) : String.valueOf(dpData.getMonth() + 1);
+        String ano = String.valueOf(dpData.getYear());
 
-        return String.valueOf(ano) + "-" + String.valueOf(mes) + "-" + String.valueOf(dia);
+        return ano + "-" + mes + "-" + dia;
     }
 
     private int getAno(String date) {
         String arr[] = date.split("-");
         return Integer.valueOf(arr[0]);
     }
+
     private int getMes(String date) {
         String arr[] = date.split("-");
         return Integer.valueOf(arr[1]) - 1;
     }
+
     private int getDia(String date) {
         String arr[] = date.split("-");
         return Integer.valueOf(arr[2]);
