@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => '127.0.0.1',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'aula_ws_presentes',
+	'hostname' => getenv('DB_HOST') ?: '127.0.0.1',
+	'username' => getenv('DB_USER') ?: 'root',
+	'password' => getenv('DB_PASSWORD') ?: '',
+	'database' => getenv('DB_NAME') ?: 'aula_ws_presentes',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
